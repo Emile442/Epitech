@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    stages {
+        stage('Mirror') {
+            steps {
+                sshagent(['Epitech']) {
+                    sh "git remote set-url --add origin git@git.epitech.eu:/emile.lepetit@epitech.eu/207demography_2019"
+                    sh "ssh -o StrictHostKeyChecking=no git@git.epitech.eu"
+                    sh "git push origin master"
+                }
+            }
+        }
+    }
+}

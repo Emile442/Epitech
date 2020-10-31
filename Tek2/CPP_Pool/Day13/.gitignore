@@ -1,0 +1,31 @@
+# MAC
+.DS_Store
+
+# IDE
+.vscode
+.idea
+
+# DEBUG
+vgcore.*
+
+#COVERAGE
+*.gcno
+*.gcda
+
+#BIN
+*.a
+*.o
+
+#Adobe
+*.psd
+*.ai
+
+cmake-build-debug
+
+unit_tests
+a.out
+main.cpp
+media
+jenkins_tests
+*.txt
+

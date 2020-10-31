@@ -1,0 +1,14 @@
+.vscode/
+cmake-build-debug
+.idea
+*.o
+*.a
+*.gc*
+unit_tests
+.DS_STORE
+*.iml
+CMakeLists.txt
+
+zappy_ai
+zappy_server
+out/

@@ -1,0 +1,16 @@
+stages:
+    - build
+    - tests
+
+build:
+  stage: build
+  image: emile442/epidocker
+  script:
+    - make
+
+unit-test:
+  stage: tests
+  image: emile442/epidocker
+  script:
+    - make tests_run
+  coverage: '/^TOTAL.*\s+(\d+\%)$/'

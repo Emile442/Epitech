@@ -1,0 +1,7 @@
+{
+    "name": "emile442/201-yams",
+    "description": "Epitech Maths Project",
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    }
+}

@@ -1,0 +1,27 @@
+stages:
+  - test
+
+cache:
+  key: $CI_BUILD_REF_NAME
+  paths:
+    - vendor
+
+test:
+  stage: test
+  image: php:7.3
+  before_script:
+    - bash ci/docker_install.sh > /dev/null
+  script:
+    - composer install --no-ansi --no-interaction --no-progress
+    - ./vendor/bin/phpunit tests
+
+coverage:
+  stage: test
+  image: php:7.3
+  before_script:
+    - bash ci/docker_install.sh > /dev/null
+  script:
+    - composer install --no-ansi --no-interaction --no-progress
+    - ./vendor/bin/phpunit --coverage-text --colors=never
+  coverage: '/^\s*Lines:\s*\d+.\d+\%/'
+

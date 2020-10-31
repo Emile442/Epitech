@@ -1,0 +1,41 @@
+stages:
+    - build
+    - code_style
+
+server_ai:
+  stage: build
+  image: epitechcontent/epitest-docker
+  script:
+    - make
+
+gui:
+  stage: build
+  image: java:latest
+  script:
+    - cd gui
+    - find -name "*.java" > sources.txt
+    - mkdir -p build
+    - javac -d ./build @sources.txt
+    - cd build
+    - jar cmvf ../MANIFEST.MF zappy-gui.jar *
+  after_script:
+    - cp gui/build/zappy-gui.jar .
+  artifacts:
+    name: gui_bin
+    paths:
+      - zappy-gui.jar
+    expire_in: 1 week
+
+norme_ai:
+  stage: code_style
+  image: registry.emile-lepetit.fr/docker/epitech
+  script:
+    - /bin/norminette -Ai 4 ai
+  allow_failure: true
+
+norme_server:
+  stage: code_style
+  image: registry.emile-lepetit.fr/docker/epitech
+  script:
+    - /bin/norminette -Ai 4 server
+  allow_failure: true

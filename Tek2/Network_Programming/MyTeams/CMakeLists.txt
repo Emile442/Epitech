@@ -1,0 +1,83 @@
+cmake_minimum_required(VERSION 3.15)
+project(my_teams C)
+
+set(CMAKE_C_STANDARD 11)
+
+include_directories(.)
+include_directories(cli)
+include_directories(cli/includes)
+include_directories(cli/src)
+include_directories(libs)
+include_directories(server)
+include_directories(server/includes)
+include_directories(server/src)
+include_directories(server/tests)
+
+add_executable(my_teams
+        cli/includes/logging_client.h
+        cli/includes/my_teams.h
+        cli/includes/network.h
+        cli/src/core/local/commands/command_log.c
+        cli/src/core/local/commands/command_ping.c
+        cli/src/core/local/commands/command_quit.c
+        cli/src/core/server/commands/command_users.c
+        cli/src/core/server/commands/commands.c
+        cli/src/core/local/dispatch.c
+        cli/src/core/server/commands/command_pong.c
+        cli/src/core/server/dispatch.c
+        cli/src/core/server/send.c
+        cli/src/core/loop.c
+        cli/src/core/prompt.c
+        cli/src/network/bind.c
+        cli/src/network/init.c
+        cli/src/network/recv.c
+        cli/src/network/send.c
+        cli/src/network/setup.c
+        cli/src/utils/error_handling.c
+        cli/src/utils/parse_str.c
+        cli/src/utils/usage.c
+        cli/src/main.c
+        libs/logging_client.h
+        libs/logging_server.h
+        server/includes/errors.h
+        server/includes/my_teams.h
+        server/includes/network.h
+        server/includes/private_messages.h
+        server/includes/sessions.h
+        server/includes/teams.h
+        server/src/core/commands/private_messages/utils/conversations_list.c
+        server/src/core/commands/private_messages/utils/messages_list.c
+        server/src/core/commands/private_messages/cmd_messages.c
+        server/src/core/commands/private_messages/cmd_send.c
+        server/src/core/commands/sessions/utils/list.c
+        server/src/core/commands/sessions/utils/user.c
+        server/src/core/commands/sessions/cmd_info.c
+        server/src/core/commands/sessions/cmd_login.c
+        server/src/core/commands/sessions/cmd_logout.c
+        server/src/core/commands/sessions/cmd_user.c
+        server/src/core/commands/sessions/cmd_users.c
+        server/src/core/commands/teams/subscribers/cmd_list.c
+        server/src/core/commands/teams/subscribers/cmd_subscribe.c
+        server/src/core/commands/teams/subscribers/cmd_unsubscribe.c
+        server/src/core/commands/teams/utils/teams_list.c
+        server/src/core/commands/teams/cmd_create.c
+        server/src/core/commands/teams/cmd_info.c
+        server/src/core/commands/teams/cmd_list.c
+        server/src/core/commands/cmd_ping.c
+        server/src/core/middleware/auth.c
+        server/src/core/response/sendto.c
+        server/src/core/create.c
+        server/src/core/dispatch.c
+        server/src/core/info.c
+        server/src/core/list.c
+        server/src/network/init.c
+        server/src/network/server.c
+        server/src/utils/clean_cmd.c
+        server/src/utils/cmd_parsing.c
+        server/src/utils/error_handling.c
+        server/src/utils/parse_str.c
+        server/src/utils/rfc_str.c
+        server/src/utils/usage.c
+        server/src/utils/uuid.c
+        server/src/main.c
+        server/tests/test_parsing_command.c)

@@ -1,0 +1,36 @@
+stages:
+    - build
+    - code_style
+    - tests
+
+build:
+  stage: build
+  image: epitechcontent/epitest-docker
+  script:
+    - make > build.log
+  artifacts:
+    name: build.log
+    paths:
+      - build.log
+
+norme_cli:
+  stage: code_style
+  image: registry.emile-lepetit.fr/docker/epitech
+  script:
+    - /bin/norminette -Ai 4 cli
+  allow_failure: true
+
+norme_server:
+  stage: code_style
+  image: registry.emile-lepetit.fr/docker/epitech
+  script:
+    - /bin/norminette -Ai 4 server
+  allow_failure: true
+
+unit-test:
+  stage: tests
+  image: epitechcontent/epitest-docker
+  script:
+    - export LD_LIBRARY_PATH=$PWD/libs/myteams
+    - make tests_run
+  coverage: '/^TOTAL.*\s+(\d+\%)$/'

@@ -1,0 +1,12 @@
+*~
+*.o
+.idea*
+CM*
+cmake*
+*#*
+a.out
+Destination.hpp
+*.txt
+main.cpp
+*.gc*
+unit_tests

@@ -1,0 +1,18 @@
+stages:
+    - build
+    - code_style
+    - tests
+  
+norme:
+  stage: code_style
+  image: emile442/epidocker
+  script:
+    - /bin/norminette -Ai 4
+  allow_failure: true
+
+unit-test:
+  stage: tests
+  image: emile442/epidocker
+  script:
+    - cd tests
+    - make

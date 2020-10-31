@@ -1,0 +1,27 @@
+# MAC
+.DS_Store
+
+# IDE
+.vscode
+.idea
+
+# DEBUG
+vgcore.*
+
+#COVERAGE
+*.gcno
+*.gcda
+
+#BIN
+*.a
+*.o
+
+#Adobe
+*.psd
+*.ai
+
+unit_tests
+a.out
+tests
+Makefile
+main.cpp

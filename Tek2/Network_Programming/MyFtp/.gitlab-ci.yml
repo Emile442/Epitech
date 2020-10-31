@@ -1,0 +1,29 @@
+stages:
+  - build
+  - tests
+  - code_style
+
+build:
+  stage: build
+  image: epitechcontent/epitest-docker
+  script:
+    - make > build.log
+  artifacts:
+    name: build.log
+    paths:
+      - build.log
+
+functional_tests:
+    stage: tests
+    image: epitechcontent/epitest-docker
+    script:
+        - make
+        - ./myftp 4242 . &
+        - ./test_ftp.sh localhost 4242 1
+
+norme:
+  stage: code_style
+  image: registry.emile-lepetit.fr/docker/epitech
+  script:
+    - /bin/norminette -Ai 4
+  allow_failure: true

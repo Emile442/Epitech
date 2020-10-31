@@ -1,0 +1,26 @@
+# MAC
+.DS_Store
+
+# IDE
+.vscode
+.idea
+
+# DEBUG
+vgcore.*
+
+#COVERAGE
+*.gcno
+*.gcda
+
+#BIN
+*.a
+*.o
+
+#Adobe
+*.psd
+*.ai
+
+main.c
+Makefile
+mem_ptr.h
+mem

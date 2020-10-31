@@ -1,0 +1,16 @@
+.DS_Store
+
+# IDE
+.idea
+.vscode
+
+# PHP
+vendor
+
+# coverage
+coverage
+
+# BIN
+204ducks
+
+*.o

@@ -1,0 +1,9 @@
+stages:
+    - build
+    - tests
+  
+unit-test:
+  stage: tests
+  image: emile442/epidocker
+  script:
+    - make tests_run

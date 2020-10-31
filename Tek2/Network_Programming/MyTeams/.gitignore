@@ -1,0 +1,11 @@
+.vscode/
+cmake-build-debug
+.idea
+*.o
+*.a
+*.gc*
+unit_tests
+
+
+myteams_cli
+myteams_server

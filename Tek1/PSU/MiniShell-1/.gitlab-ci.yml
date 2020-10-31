@@ -1,0 +1,55 @@
+stages:
+    - build
+    - code_style
+    - tests
+
+build:
+    stage: build
+    image: emile442/epidocker
+    script:
+        - make
+
+norme:
+    stage: code_style
+    image: emile442/epidocker
+    script:
+        - /bin/norminette -Ai 4
+
+unit_tests:
+    stage: tests
+    image: emile442/epidocker
+    script:
+        - make
+        - cd tests
+        - make tests_run
+        - make re
+        - cd ../
+        - gcovr --exclude tests/ --branches
+
+functional_tests:
+    stage: tests
+    image: emile442/epidocker
+    before_script:
+        - dnf install glibc-devel.i686 -y -q
+    script:
+        - ./test_minishell.sh .
+    artifacts:
+        when: always
+        name: trace
+        paths:
+            - trace/*
+
+my_moulinette:
+    stage: tests
+    image: emile442/epidocker
+    before_script:
+        - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@git.emile-lepetit.fr/epitech/tek-1/psu/minishell-1-tests.git my_moulinette
+        - make
+    script:
+        - cd my_moulinette
+        - ./launch
+    artifacts:
+        when: always
+        name: trace
+        paths:
+            - my_moulinette/trace/*

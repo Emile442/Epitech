@@ -1,0 +1,26 @@
+stages:
+  - build
+  - code_style
+  - deploy
+
+build:
+  stage: build
+  image: emile442/epidocker
+  tags:
+      - csfml
+  script:
+    - make > build.log
+  artifacts:
+    name: build.log
+    paths:
+      - build.log
+
+norme:
+  stage: code_style
+  image: emile442/epidocker
+  tags:
+      - epitech_norme
+  script:
+    - /bin/norminette -Ai 4
+  allow_failure: true
+

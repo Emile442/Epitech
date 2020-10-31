@@ -1,0 +1,21 @@
+# MAC
+.DS_Store
+
+# IDE
+.vscode
+.idea
+
+# DEBUG
+vgcore.*
+
+#COVERAGE
+*.gcno
+*.gcda
+
+#BIN
+*.a
+*.o
+
+*.psd
+my_hunter
+tmp

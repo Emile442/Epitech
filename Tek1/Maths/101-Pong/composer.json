@@ -1,0 +1,8 @@
+{
+    "name": "emile442/101-pong",
+    "description": "Epitech Maths Project",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    }
+}

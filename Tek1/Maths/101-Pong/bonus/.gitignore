@@ -1,0 +1,9 @@
+# IDE
+.idea
+.vscode
+
+#BUILD
+production
+build
+sources.txt
+resources/export

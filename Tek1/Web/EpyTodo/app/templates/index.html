@@ -1,0 +1,23 @@
+{% extends 'layouts/application.html' %}
+
+{% block content %}
+    <h3>Home</h3>
+    {% if not session['user_id'] %}
+        <div class="alert alert-info">
+            Please connect you for see your Todo List
+        </div>
+    {% endif %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <a href="#" class="alert-link">Success:</a> {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+{% endblock %}

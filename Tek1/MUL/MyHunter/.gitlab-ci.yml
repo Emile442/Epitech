@@ -1,0 +1,20 @@
+stages:
+  - build
+  - code_style
+
+build:
+  stage: build
+  image: emile442/epidocker
+  script:
+    - make > build.log
+  artifacts:
+    name: build.log
+    paths:
+      - build.log
+
+norme:
+  stage: code_style
+  image: emile442/epidocker
+  script:
+    - /bin/norminette -Ai 4
+  allow_failure: true

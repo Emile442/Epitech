@@ -1,0 +1,9 @@
+.idea
+include
+lib
+lib64
+bin
+__pycache__
+*~
+.Python
+*.pdf

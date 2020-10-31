@@ -1,0 +1,9 @@
+main.c
+a.out
+unit_tests
+.vscode
+vgcore.*
+.idea
+*.gcno
+*.gcda
+*.a

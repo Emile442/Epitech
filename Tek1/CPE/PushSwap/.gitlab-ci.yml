@@ -1,0 +1,56 @@
+stages:
+  - build
+  - test
+  - code_quality
+
+build:
+  stage: build
+  image: emile442/epidocker
+  script:
+    - make > build.log
+  artifacts:
+    name: build.log
+    paths:
+      - build.log
+
+unit_tests:
+  stage: test
+  image: emile442/epidocker
+  script:
+    - make
+    - cd tests
+    - make re
+    - ./unit-tests
+
+functionnal_tests:
+  stage: test
+  image: emile442/epidocker
+  script:
+    - make
+    - mkdir -p /root/mbin
+    - cp swap.pm /root/mbin
+    - ./push_swap_cor.pl > trace.log
+  artifacts:
+    name: trace_tf
+    paths:
+      - trace
+      - trace.log
+
+coverage:
+  stage: code_quality
+  image: emile442/epidocker
+  before_script:
+    - make
+    - cd tests
+    - make re
+    - ./unit-tests
+    - cd ../
+  script:
+    - gcovr --exclude tests/ --branches
+
+norme:
+  stage: code_quality
+  image: emile442/epidocker
+  script:
+    - /bin/norminette -Ai 4
+  allow_failure: true

@@ -1,0 +1,44 @@
+stages:
+- test
+- build
+- deploy
+
+cache:
+  key: $CI_BUILD_REF_NAME
+  paths:
+    - vendor
+
+test:
+  stage: test
+  image: edbizarro/gitlab-ci-pipeline-php:7.2-alpine
+  script:
+    - composer install --no-ansi --no-interaction --no-progress --dev
+    - ./vendor/bin/phpunit tests
+
+coverage:
+  stage: test
+  image: edbizarro/gitlab-ci-pipeline-php:7.2-alpine
+  script:
+    - composer install --no-ansi --no-interaction --no-progress --dev
+    - ./vendor/bin/phpunit --coverage-text --colors=never --coverage-html coverage
+  artifacts:
+    name: Coverage
+    paths:
+      - coverage
+
+bonus:
+  stage: build
+  image: java:latest
+  script:
+    - cd bonus/101pong_2018-java/
+    - find -name "*.java" > sources.txt
+    - mkdir -p build
+    - javac -d ./build @sources.txt
+    - mkdir -p build/fr/fedocker/pong/resources
+    - cp -R src/fr/fedocker/pong/resources/ build/fr/fedocker/pong/
+    - cd build
+    - jar cmvf ../MANIFEST.MF  Pong.jar *
+  artifacts:
+    name: bin
+    paths:
+      - bonus/101pong_2018-java/build/Pong.jar

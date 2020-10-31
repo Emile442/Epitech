@@ -1,0 +1,11 @@
+a.out
+tests_run
+.vscode
+vgcore.*
+.idea
+*.gcno
+*.gcda
+*.a
+.DS_Store
+infin_add
+libmy.a

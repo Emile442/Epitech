@@ -1,0 +1,9 @@
+a.out
+unit_tests
+.vscode
+vgcore.*
+.idea
+*.gcno
+*.gcda
+*.a
+.DS_Store

@@ -1,0 +1,10 @@
+main.c
+my_putchar.c
+my_put_nbr.c
+a.out
+unit_tests
+.vscode
+vgcore.*
+.idea
+*.gcno
+*.gcda

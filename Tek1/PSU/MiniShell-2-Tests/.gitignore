@@ -1,0 +1,12 @@
+# MAC
+.DS_Store
+
+# IDE
+.vscode
+.idea
+
+# TMP
+trace
+
+# BIN
+mysh

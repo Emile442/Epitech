@@ -1,0 +1,27 @@
+stages:
+    - build
+    - code_style
+    - test
+
+build:
+    stage: build
+    image: emile442/epidocker
+    script:
+        - make
+
+norme:
+    stage: code_style
+    image: emile442/epidocker
+    script:
+        - /bin/norminette -Ai 4
+    allow_failure: true
+
+test:
+    stage: test
+    image: emile442/epidocker
+    script:
+        - cd tests
+        - make
+        - ./unit-tests
+        - cd ..
+        - gcovr --exclude tests/ --branches

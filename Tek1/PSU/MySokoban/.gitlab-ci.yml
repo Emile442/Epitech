@@ -1,0 +1,23 @@
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  image: emile442/epidocker
+  script:
+    - make > build.log
+  artifacts:
+    name: build.log
+    paths:
+      - build.log
+test:
+  stage: test
+  image: emile442/epidocker
+  script:
+    - make
+    - cd tests
+    - make tests_run
+    - make re
+    - cd ../
+    - gcovr --exclude tests/ --branches

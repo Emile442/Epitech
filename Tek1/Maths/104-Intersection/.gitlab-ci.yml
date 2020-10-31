@@ -1,0 +1,26 @@
+stages:
+- test
+- build
+
+cache:
+  key: $CI_BUILD_REF_NAME
+  paths:
+    - vendor
+
+test:
+  stage: test
+  image: edbizarro/gitlab-ci-pipeline-php:7.2-alpine
+  script:
+    - composer install --no-ansi --no-interaction --no-progress --dev
+    - ./vendor/bin/phpunit tests
+
+coverage:
+  stage: test
+  image: edbizarro/gitlab-ci-pipeline-php:7.2-alpine
+  script:
+    - composer install --no-ansi --no-interaction --no-progress --dev
+    - ./vendor/bin/phpunit --coverage-text --colors=never --coverage-html coverage
+  artifacts:
+    name: Coverage
+    paths:
+      - coverage

@@ -1,0 +1,48 @@
+{% extends 'layouts/application.html' %}
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <a href="#" class="alert-link">Success:</a> {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <h3>My Account</h3>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    {% if user %}
+                        <div class="form-group">
+                            <label for="user_id">ID</label>
+                            <input type="text" id="user_id" value="{{ user['user_id'] }}" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" value="{{ user['username'] }}" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="text" id="password" value="{{ user['password'] }}" class="form-control" disabled>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="offset-2 col-md-4">
+            <div class="list-group">
+              <a href="/profile" class="list-group-item list-group-item-action active">My Account</a>
+              <a href="#" class="list-group-item list-group-item-action">My Tasks</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

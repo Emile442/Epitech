@@ -1,0 +1,16 @@
+stages:
+    - build
+    - code_style
+
+build:
+    stage: build
+    image: emile442/epidocker
+    script:
+        - make re
+
+norme:
+    stage: code_style
+    image: emile442/epidocker
+    script:
+        - /bin/norminette -Ai 4
+    allow_failure: true

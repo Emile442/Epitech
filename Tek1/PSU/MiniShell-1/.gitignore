@@ -1,0 +1,23 @@
+# MAC
+.DS_Store
+
+# IDE
+.vscode
+.idea
+
+# DEBUG
+vgcore.*
+*.log
+tmp
+
+#COVERAGE
+*.gcno
+*.gcda
+
+#BIN
+*.a
+*.o
+*.test
+
+mysh
+my_moulinette

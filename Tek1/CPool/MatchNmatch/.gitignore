@@ -1,0 +1,12 @@
+main.c
+a.out
+unit_tests*
+.vscode
+vgcore.*
+.idea
+*.gcno
+*.gcda
+match
+nmatch
+libmy.a
+test_files

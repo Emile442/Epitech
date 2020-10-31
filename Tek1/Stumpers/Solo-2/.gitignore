@@ -1,0 +1,20 @@
+# MAC
+.DS_Store
+
+# IDE
+.vscode
+.idea
+
+# DEBUG
+vgcore.*
+*.log
+
+#COVERAGE
+*.gcno
+*.gcda
+
+#BIN
+*.a
+*.o
+
+anagram
